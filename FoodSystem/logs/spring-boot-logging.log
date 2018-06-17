@@ -1,0 +1,12 @@
+2017-11-14 21:16:30.581  INFO 11600 --- [restartedMain] com.example.demo.FoodSystemApplication   : Starting FoodSystemApplication on DESKTOP-7O0ES0O with PID 11600 (E:\stsWorkSpace\FoodSystem1\target\classes started by 柴火 in E:\stsWorkSpace\FoodSystem1)
+2017-11-14 21:16:30.592  INFO 11600 --- [restartedMain] com.example.demo.FoodSystemApplication   : No active profile set, falling back to default profiles: default
+2017-11-14 21:16:37.275  INFO 11600 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-14 21:16:37.278  INFO 11600 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2017-11-14 21:16:37.864  INFO 11600 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-11-14 21:16:41.650  INFO 11600 --- [restartedMain] com.example.demo.FoodSystemApplication   : Started FoodSystemApplication in 11.87 seconds (JVM running for 13.177)
+2017-11-14 21:23:27.096  INFO 1980 --- [restartedMain] com.example.demo.FoodSystemApplication   : Starting FoodSystemApplication on DESKTOP-7O0ES0O with PID 1980 (E:\stsWorkSpace\FoodSystem1\target\classes started by 柴火 in E:\stsWorkSpace\FoodSystem1)
+2017-11-14 21:23:27.125  INFO 1980 --- [restartedMain] com.example.demo.FoodSystemApplication   : No active profile set, falling back to default profiles: default
+2017-11-14 21:23:33.637  INFO 1980 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-14 21:23:33.639  INFO 1980 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+2017-11-14 21:23:34.136  INFO 1980 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-11-14 21:23:39.115  INFO 1980 --- [restartedMain] com.example.demo.FoodSystemApplication   : Started FoodSystemApplication in 12.845 seconds (JVM running for 14.035)

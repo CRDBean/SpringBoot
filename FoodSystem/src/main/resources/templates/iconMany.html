@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org ">
+<head>
+<meta charset="UTF-8" />
+<script type="text/javascript" src="echarts/echarts.min.js"></script>
+<script type="text/javascript" src="JQuery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		
+		
+
+		$.ajax({
+			url : 'test.action',
+			type : 'POST',
+			dataType : 'json',
+			timeout : 1000,
+			cache : false,
+
+			error : erryFunction, //错误执行方法    
+			success : succFunction//成功执行方法    
+		})
+		function erryFunction() {
+			alert("error");
+		}
+		function succFunction(json) {
+
+			//alert(json.length);
+			var length=json.length;
+			alert(length);
+			
+			
+
+		}
+	});
+</script> 
+
+</head>
+<body>
+	<center>
+		<h1></h1>
+	</center>
+
+
+	<div id="chartmain" style="width: 1200px; height: 400px;"></div>
+
+	<script type="text/javascript">
+		//指定图标的配置和数据
+		var option = {
+			title : {
+				text : 'ECharts 点餐次数数据统计'
+			},
+			tooltip : {
+				trigger : 'axis' //有了这句话鼠标移动就会有一条数线
+			},
+			legend : {
+				data : [ '用户来源' ]
+			},
+			xAxis : {
+
+				data : [],
+				axisLabel : {
+
+					interval : 0,//横轴信息全部显示
+					rotate : -40
+				//X轴的数据是斜体
+				},
+				axisTick : {
+					length : 5
+				},
+
+			},
+			yAxis : {
+
+			},
+			series : [ {
+				name : '点餐次数',
+				type : 'line',
+				data : []
+			} ]
+		};
+		//初始化echarts实例
+		var myChart = echarts.init(document.getElementById('chartmain'));
+
+		//Ajax
+		$.ajax({
+			type : "post",
+			async : true, //异步执行  
+			url : "test.action",
+			dataType : "json", //返回数据形式为json  
+			success : function(json) {
+
+				if (json) {
+
+					myChart.hideLoading();
+					myChart.setOption({
+						title : {
+							text : '异步数据加载示例' + json[0].typeName
+						},
+						xAxis : {
+							data : json[0].listFoodName
+						},
+
+						series : [ {
+							data : json[0].listFoodClickNumber
+						} ]
+
+					});//myChart.setOption({
+
+				}//if (json) {
+			},
+			error : function(errorMsg) {
+				alert("请求数据失败");
+			}
+		});
+		//Ajax
+
+		//使用制定的配置项和数据显示图表
+		myChart.setOption(option);
+	</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Message" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="bname" property="bname" jdbcType="VARCHAR" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, bname, message, money, time
+  </sql>
+  
+  
+  <!-- selectMoney自己写的 -->
+  <select id="selectMoney"  resultType="double">
+  select sum(money) from message 
+   <where>
+     <if test="selectTime != null and selectTime != ''">
+	   and time like  #{selectTime} '%'
+    </if>
+  </where>     
+  </select>
+  
+  
+   <!-- selectMessageByTime自己写的 -->
+  <select id="selectMessageByTime"  resultMap="BaseResultMap">
+  select 
+  <include refid="Base_Column_List" /> 
+  from message 
+   <where>
+     <if test="selectTime != null and selectTime != ''">
+	   and time like   '%' #{selectTime,jdbcType=VARCHAR} '%'
+    </if>
+  </where>     
+  </select>
+  
+
+ 
+  <insert id="insert" parameterType="com.example.demo.entity.Message" >
+    insert into message (id, bname, message, 
+      money, time)
+    values (#{id,jdbcType=INTEGER}, #{bname,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, 
+      #{money,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+ 
+</mapper>

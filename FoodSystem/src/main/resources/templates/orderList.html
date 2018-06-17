@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org ">
+<head>
+<meta charset="UTF-8" />
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="style/js/jquery.js"></script>
+<script type="text/javascript" src="style/js/page_common.js"></script>
+<link href="style/css/common_style_blue.css" rel="stylesheet"
+	type="text/css"></link>
+<link rel="stylesheet" type="text/css" href="style/css/index_1.css"></link>
+<script type="text/javascript">
+	setInterval(function() {
+		window.location.href = "/wirelessplatform/client.html?method=list";
+	}, 1000 * 50);
+</script>
+</head>
+<body>
+	<!-- 页面标题 -->
+	<div id="TitleArea">
+		<div id="TitleArea_Head"></div>
+		<div id="TitleArea_Title">
+			<div id="TitleArea_Title_Content">
+				<img border="0" width="13" height="13"
+					src="style/images/title_arrow.gif" /> 餐厅订单列表
+			</div>
+		</div>
+		<div id="TitleArea_End"></div>
+	</div>
+	<!-- 过滤条件 -->
+	<div id="QueryArea">
+		<form action="setTimeCondition.action" method="post">
+		<input type="text" class="demo-input" name="selectTime" 
+		placeholder="请选择日期" id="test1"  ></input>
+        <script src="laydate/laydate.js"></script> <!-- 改成你的路径 -->
+        <script>
+            lay('#version').html('-v'+ laydate.v);
+
+             //执行一个laydate实例
+             laydate.render({
+              elem: '#test1' //指定元素
+           });
+        </script>
+			<span	th:text="${selectTime}"></span> 
+				 <input type="submit" value="搜索"></input>
+		</form>
+	</div>
+	<!-- 主内容区域（数据列表或表单显示） -->
+	<div id="MainArea">
+		<table class="MainArea_Content" align="center" cellspacing="0"	cellpadding="0">
+			<!-- 表头-->
+			<thead>
+				<tr align="center" valign="middle" id="TableTitle">
+					<td>订单编号</td>
+					<td>餐桌名</td>
+					<td>订单内容</td>
+					<td>总金额</td>
+					<td>付款日期</td>
+
+
+				</tr>
+			</thead>
+			<!--显示数据列表 -->
+			<tbody id="TableData">
+
+             
+
+				<th:block th:each="message:${messages}">
+					<tr class="TableDetail1">
+						<td><span th:text="${message.id}"></span>&nbsp;</td>
+						<td><span th:text="${message.bname}"></span>&nbsp;</td>
+						<td><span th:text="${message.message}"></span>&nbsp;</td>
+						<td><span th:text="${message.money}"></span>&nbsp;</td>
+						<td><span th:text="${message.time}"></span>&nbsp;</td>
+
+
+					</tr>
+
+				</th:block>
+
+
+
+			</tbody>
+		</table>
+		<!-- 其他功能超链接 -->
+		<div id="TableTail" align="center">
+			一共收益<span th:text="${totalPrice}"></span>元
+
+		</div>
+	</div>
+</body>
+</html>

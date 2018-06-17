@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org ">
+<head>
+<meta charset="UTF-8"/>
+<title>无线点餐平台</title>
+<script type="text/javascript" src="style/js/jquery.js"></script>
+<script type="text/javascript" src="style/js/page_common.js"></script>
+<link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css"></link>
+<link rel="stylesheet" type="text/css" href="style/css/index_1.css" ></link>
+
+<!-- bootstrop -->
+<!-- <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"></link> -->
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- bootstrop -->
+</head>
+<body>
+<div id="TitleArea">
+	<div id="TitleArea_Head"></div>
+	<div id="TitleArea_Title">
+		<div id="TitleArea_Title_Content">
+			<img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 菜品列表
+		</div>
+    </div>
+	<div id="TitleArea_End"></div>
+</div>
+
+
+	<!-- 过滤条件 -->
+	<div id="QueryArea">
+		<form action="foodCondition.action" method="post">          
+                                
+			<input type="text" name="selectKeyWord" title="请输入菜品名称"></input>
+			<span th:text="${selectKeyWord}" ></span>
+			<input type="submit" value="搜索"></input>
+		</form>
+	</div>
+<!-- 主内容区域（数据列表或表单显示） -->
+<div id="MainArea">
+    <table class="MainArea_Content" align="center" cellspacing="0" cellpadding="0">
+        <!-- 表头-->
+        <thead>
+            <tr align="center" valign="middle" id="TableTitle">
+				<td>菜编号</td>
+				<td>菜名</td>
+				<td>所属菜系</td>
+				<td>价格</td>
+                <td>会员价格</td>
+				<td>操作</td>
+			</tr>
+		</thead>	
+		<!--显示数据列表 -->
+        <tbody id="TableData">
+		
+			<!-- <tr class="TableDetail1">
+				<td>1&nbsp;</td>
+				<td>白灼虾&nbsp;</td>
+				<td>粤菜&nbsp;</td>
+				<td>36.0&nbsp;</td>
+                <td>23.0&nbsp;</td>
+				<td>
+					<a href="#"  class="FunctionButton">更新</a>				
+					<a href="#"  class="FunctionButton">删除</a>				
+				</td>
+			</tr> -->
+		  <th:block th:each="food:${page.dataList}">
+		    <tr class="TableDetail1">
+				<td><span th:text="${food.fid}" ></span>&nbsp;</td>
+				<td><span th:text="${food.fname}" ></span>&nbsp;</td>
+				<td><span th:text="${food.foodType.typename}" ></span>&nbsp;</td> 
+				<td><span th:text="${food.price}" ></span>&nbsp;</td>
+                <td><span th:text="${food.mprice}" ></span>&nbsp;</td>
+				<td>
+					<a th:href="@{'updateFoodHtml.action?id='+${food.fid}}"  class="FunctionButton">更新</a>
+					<a th:href="@{'deleteFoodById.action?id='+${food.fid}}"  class="FunctionButton">删除</a>
+					
+							
+				</td>
+			</tr>
+		  </th:block>
+			
+			
+			       
+        </tbody>
+    </table>
+	
+   <!-- 其他功能超链接 -->
+	<div id="TableTail" align="center">
+		<div class="FunctionButton" style="margin-right:200px "><a href="saveFoodHtml.action">添 加</a></div>
+		
+		当前第<span th:text="${page.currentPage}" ></span>页，
+		一共<span th:text="${page.totalPage}" ></span>页，
+		<span th:text="${page.totalRecord}" ></span>条记录
+		
+		<div class="FunctionButton"><a href="setCurrectPage.action?currectPage=1">首页</a></div>
+		<div class="FunctionButton"><a href="setCurrectPage.action?currectPage=2">上一页</a></div>
+		<div class="FunctionButton"><a href="setCurrectPage.action?currectPage=3">下一页</a></div>
+		<div class="FunctionButton" ><a href="setCurrectPage.action?currectPage=4">尾页</a></div>
+    </div> 
+</div>
+
+</body>
+</html>

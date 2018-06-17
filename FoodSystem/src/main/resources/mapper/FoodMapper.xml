@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.FoodMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Food" >
+    <id column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="ftype" property="ftype" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="mprice" property="mprice" jdbcType="DOUBLE" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+     <result column="clickNumber" property="clickNumber" jdbcType="INTEGER" />
+    <association property="foodType"     javaType="com.example.demo.entity.FoodType"
+    select="com.example.demo.dao.FoodTypeMapper.selectByPrimaryKey" column="ftype"></association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    fid, fname, ftype, price, mprice, message, picture,clickNumber
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.entity.FoodExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from food
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from food
+    where fid = #{fid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from food
+    where fid = #{fid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.entity.FoodExample" >
+    delete from food
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Food" >
+    insert into food (fid, fname, ftype, 
+      price, mprice, message, 
+      picture)
+    values (#{fid,jdbcType=INTEGER}, #{fname,jdbcType=VARCHAR}, #{ftype,jdbcType=INTEGER}, 
+      #{price,jdbcType=DOUBLE}, #{mprice,jdbcType=DOUBLE}, #{message,jdbcType=VARCHAR}, 
+      #{picture,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Food" >
+    insert into food
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+      <if test="ftype != null" >
+        ftype,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="mprice != null" >
+        mprice,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="ftype != null" >
+        #{ftype,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="mprice != null" >
+        #{mprice,jdbcType=DOUBLE},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.entity.FoodExample" resultType="java.lang.Integer" >
+    select count(*) from food
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update food
+    <set >
+      <if test="record.fid != null" >
+        fid = #{record.fid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fname != null" >
+        fname = #{record.fname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ftype != null" >
+        ftype = #{record.ftype,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mprice != null" >
+        mprice = #{record.mprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.message != null" >
+        message = #{record.message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture != null" >
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update food
+    set fid = #{record.fid,jdbcType=INTEGER},
+      fname = #{record.fname,jdbcType=VARCHAR},
+      ftype = #{record.ftype,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DOUBLE},
+      mprice = #{record.mprice,jdbcType=DOUBLE},
+      message = #{record.message,jdbcType=VARCHAR},
+      picture = #{record.picture,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Food" >
+    update food
+    <set >
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="ftype != null" >
+        ftype = #{ftype,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="mprice != null" >
+        mprice = #{mprice,jdbcType=DOUBLE},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Food" >
+    update food
+    set fname = #{fname,jdbcType=VARCHAR},
+      ftype = #{ftype,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      mprice = #{mprice,jdbcType=DOUBLE},
+      message = #{message,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR}
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  
+  
+  <update id="updateFoodClickNumber"   parameterType="Integer">
+    update food set clickNumber = clickNumber + 1 where fid = #{fid}
+  </update>
+  
+</mapper>

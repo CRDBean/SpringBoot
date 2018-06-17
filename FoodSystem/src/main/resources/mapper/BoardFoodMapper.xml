@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.BoardFoodMapper" >
+
+    <insert id="insertBoardFoodOne">
+     insert into boardfood values (#{bid},#{fid},1);
+    </insert>
+
+
+    <select id="selectBoardHasAllFood"   resultType="map">
+      select fid,number from boardfood where bid = #{id}
+    </select>
+    
+    
+    <delete id="deleteBoardHasFood">
+       delete from boardfood where bid = #{id}
+    </delete>
+    
+    <delete id="deleteBoardHasFoodOne">
+       delete from boardfood where bid = #{bid} and  fid = #{fid}
+    </delete>
+    
+    <select id="selectBoardHasFoodNumber"  resultType="Integer">
+    select number from boardfood where  bid = #{bid} and  fid = #{fid}
+    </select>
+    
+    
+    <update id="addBoardHasFoodNumber">
+    update boardfood set number = number + 1  where  bid = #{bid} and  fid = #{fid}
+    </update>
+    <update id="subBoardHasFoodNumber">
+    update boardfood set number = number - 1  where  bid = #{bid} and  fid = #{fid}
+    </update>
+ 
+</mapper>

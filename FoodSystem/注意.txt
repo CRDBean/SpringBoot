@@ -1,0 +1,5 @@
+updateFood.html页面怎么显示图片,会拼接，就是不会显示
+Food实体类添加了clickNumber计数功能，还没写dao层
+
+
+123123
