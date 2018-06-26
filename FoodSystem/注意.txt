@@ -3,3 +3,8 @@ Food实体类添加了clickNumber计数功能，还没写dao层
 
 
 123123
+
+
+
+js中获取
+var error = /*[[${request.error}]]*/

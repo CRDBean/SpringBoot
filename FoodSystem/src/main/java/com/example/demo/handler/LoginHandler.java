@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entity.User;
 import com.example.demo.servcie.UserService;
@@ -17,24 +16,39 @@ public class LoginHandler {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("/loginCheck.action")
-	@ResponseBody
-	public String loginCheck(String username, String password,HttpServletRequest request) {
-		
-		User user = userService.selectUser(username, password);
-		
-		if (user == null) {
-			return "0";
-		} else {
-			request.getSession().setAttribute("user", user);
-			return "1";
-		}
-	}
+	/*
+	 * @RequestMapping("/loginCheck.action")
+	 * 
+	 * @ResponseBody public String loginCheck(String username, String
+	 * password,HttpServletRequest request) {
+	 * 
+	 * User user = userService.selectUser(username, password);
+	 * 
+	 * if (user == null) { return "0"; } else {
+	 * request.getSession().setAttribute("user", user); return "1"; } }
+	 */
 
 	@RequestMapping("/login.action")
-	public String login() {
+	public String login(String username, String password, HttpServletRequest request) {
 		System.out.println("login action...");
-		return "/loginSuccess";
+		User user = userService.selectUser(username, password);
+
+		if (user == null) {
+			request.setAttribute("error", "用户名名或者密码错误！！！");
+			request.getSession().setAttribute("loginError", "用户名名或者密码错误！！！");
+			return "/index";
+		} else {
+			request.getSession().setAttribute("user", user);
+			request.getSession().removeAttribute("loginError");
+			return "/loginSuccess";
+		}
+
+	}
+
+	@RequestMapping("/index.action")
+	public String index() {
+		System.out.println("loginHtml action...");
+		return "/index";
 
 	}
 
@@ -42,7 +56,7 @@ public class LoginHandler {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		System.out.println("loginout action...");
-		return "redirect:http://localhost:8080/";
+		return "/index";
 
 	}
 
