@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-06-08 10:06:57
+Date: 2018-07-04 19:55:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `board` (
 -- Records of board
 -- ----------------------------
 INSERT INTO `board` VALUES ('1', '一号桌', '1', '2018-01-11 17:27:56');
-INSERT INTO `board` VALUES ('2', '二号桌', '1', '2017-11-16 21:51:38');
+INSERT INTO `board` VALUES ('2', '二号桌', '0', '2018-07-04 19:49:26');
 INSERT INTO `board` VALUES ('3', '三号桌', '0', '2017-11-14 19:27:11');
 INSERT INTO `board` VALUES ('4', '四号桌', '0', '2017-11-21 19:27:38');
 INSERT INTO `board` VALUES ('5', '五号桌', '0', '2017-11-06 20:36:28');
@@ -56,12 +56,6 @@ CREATE TABLE `boardfood` (
 -- ----------------------------
 -- Records of boardfood
 -- ----------------------------
-INSERT INTO `boardfood` VALUES ('2', '1', '2');
-INSERT INTO `boardfood` VALUES ('2', '2', '1');
-INSERT INTO `boardfood` VALUES ('2', '4', '1');
-INSERT INTO `boardfood` VALUES ('2', '12', '1');
-INSERT INTO `boardfood` VALUES ('2', '20', '3');
-INSERT INTO `boardfood` VALUES ('2', '22', '1');
 
 -- ----------------------------
 -- Table structure for `food`
@@ -84,7 +78,7 @@ CREATE TABLE `food` (
 -- ----------------------------
 -- Records of food
 -- ----------------------------
-INSERT INTO `food` VALUES ('1', '鸡爪有', '8', '23.00', '22.00', '好吃12332111111111111', '子弹.jpg', '3');
+INSERT INTO `food` VALUES ('1', '鸡爪有', '8', '23.00', '22.00', '好吃1231233', '110.png', '3');
 INSERT INTO `food` VALUES ('2', '金针菇', '2', '22.00', '23.00', '不好吃', '1.jpg', '1');
 INSERT INTO `food` VALUES ('3', '白菜1', '6', '10.00', '5.00', '很棒', '1.jpg', '100');
 INSERT INTO `food` VALUES ('4', '猪肉11111111111111111111', '4', '30.00', '20.00', '123', '4.jpg', '3');
@@ -114,7 +108,7 @@ CREATE TABLE `foodtype` (
 -- Records of foodtype
 -- ----------------------------
 INSERT INTO `foodtype` VALUES ('1', '食品');
-INSERT INTO `foodtype` VALUES ('2', '电子');
+INSERT INTO `foodtype` VALUES ('2', '电子1');
 INSERT INTO `foodtype` VALUES ('3', '生活用品');
 INSERT INTO `foodtype` VALUES ('4', '衣服');
 INSERT INTO `foodtype` VALUES ('5', '水果');
@@ -133,7 +127,7 @@ CREATE TABLE `message` (
   `money` double NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of message
@@ -152,6 +146,7 @@ INSERT INTO `message` VALUES ('13', '新餐桌', '大鸡爪*2 , 金针菇*1 ,', 
 INSERT INTO `message` VALUES ('14', '六号桌', '小鸡爪*3 , 金针菇*1 ,', '91', '2017-11-08 15:14:37');
 INSERT INTO `message` VALUES ('16', '一号桌', '大鸡爪*1 , 金针菇*1 ,', '45', '2017-11-08 18:58:27');
 INSERT INTO `message` VALUES ('17', '二号桌', '大鸡爪*1 , 金针菇*1 , 白菜*1 , 新菜*1 ,', '66', '2017-11-10 18:54:29');
+INSERT INTO `message` VALUES ('18', '二号桌', '鸡爪有*2 , 金针菇*1 , 猪肉11111111111111111111*1 , 西红柿*1 , 有图片*3 , 123*1 ,', '104', '2018-07-04 19:49:30');
 
 -- ----------------------------
 -- Table structure for `springboot01`

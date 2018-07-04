@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entity.Food;
 import com.example.demo.entity.FoodType;
-import com.example.demo.servcie.FoodServcie;
-import com.example.demo.servcie.FoodTypeService;
+import com.example.demo.servcieImpl.FoodServcie;
+import com.example.demo.servcieImpl.FoodTypeService;
 
 @Controller
 public class TestHandler {

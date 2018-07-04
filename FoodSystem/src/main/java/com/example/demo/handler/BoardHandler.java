@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Board;
 import com.example.demo.entity.Food;
-import com.example.demo.servcie.BoardService;
-import com.example.demo.servcie.FoodServcie;
-import com.example.demo.servcie.impl.BoardFoodService;
+import com.example.demo.servcieImpl.BoardFoodService;
+import com.example.demo.servcieImpl.BoardService;
+import com.example.demo.servcieImpl.FoodServcie;
 
 @Controller
 public class BoardHandler {

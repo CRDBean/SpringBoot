@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.User;
-import com.example.demo.servcie.UserService;
+import com.example.demo.servcieImpl.UserService;
 
 @Controller
 public class LoginHandler {

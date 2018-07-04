@@ -16,8 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.entity.Food;
 import com.example.demo.entity.FoodType;
 import com.example.demo.entity.Page;
-import com.example.demo.servcie.FoodServcie;
-import com.example.demo.servcie.FoodTypeService;
+import com.example.demo.servcieImpl.FoodServcie;
+import com.example.demo.servcieImpl.FoodTypeService;
 
 @Controller
 public class FoodHandler {
@@ -129,30 +129,10 @@ public class FoodHandler {
 	}
 
 	@RequestMapping("/saveFood.action")
-	public String saveFood(Food f, MultipartFile file) throws IOException {
+	public String saveFood(Food f, MultipartFile file) throws Exception {
 
-		if (!file.isEmpty()) {
-
-			// 打印文件的名称
-			// System.out.println("FileName:" + file.getOriginalFilename());
-			// 确定上传文件的位置
-			// String path =
-			// "E:/stsWorkSpace/SpringBoot_Test/src/main/resources/upload";
-			String path = "E:/stsWorkSpace/picture/foodsystem";
-			File newFile = new File(path, file.getOriginalFilename());
-			// 如果不存在，创建一哥副本
-			if (!newFile.exists()) {
-				newFile.createNewFile();
-
-			}
-
-			// 将io上传到副本中
-			file.transferTo(newFile);
-			f.setPicture(file.getOriginalFilename());
-
-		}
-		// System.out.println("----------->" + f);
-		foodService.addFood(f);
+		
+		foodService.addFood(f,file);
 		
 		//将查询条件致为空
 		this.currectPage=Integer.MAX_VALUE;

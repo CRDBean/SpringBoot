@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Message;
-import com.example.demo.servcie.MessageService;
+import com.example.demo.servcieImpl.MessageService;
 @Controller
 public class MessageHandler {
 	

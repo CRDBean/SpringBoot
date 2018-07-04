@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.FoodType;
-import com.example.demo.servcie.FoodTypeService;
+import com.example.demo.servcieImpl.FoodTypeService;
 
 @Controller
 public class FoodTypeHandler {
